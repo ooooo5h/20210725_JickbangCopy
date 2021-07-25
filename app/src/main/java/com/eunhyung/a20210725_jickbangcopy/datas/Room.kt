@@ -1,10 +1,32 @@
 package com.eunhyung.a20210725_jickbangcopy.datas
 
+import java.text.NumberFormat
+import java.util.*
+
 class Room(
     val price : Int,
     val address : String,
     val floor : Int,
     val description : String) {
+
+    fun getFormattedPrice() : String {
+
+        if(this.price < 10000) {
+            val priceString = NumberFormat.getNumberInstance(Locale.KOREA).format(this.price)
+            return priceString
+        }
+        else {
+            val uk = this.price / 10000
+
+            val rest = this.price % 10000
+
+            val priceStr = "${uk}억${NumberFormat.getNumberInstance(Locale.KOREA).format(rest)}"
+
+            return priceStr
+
+        }
+    }
+
 
     fun getFormattedFloor() : String {
         if(this.floor >= 1) {
